@@ -1,12 +1,11 @@
-from django.shortcuts import render
+import requests
+from bs4 import BeautifulSoup
 from django.http import HttpResponse
 from rest_framework import viewsets
+
 from .models import Question
 from .serializer import QuestionSerializer
-from bs4 import BeautifulSoup
 
-import requests
-import json
 
 # Create your views here.
 
@@ -41,5 +40,5 @@ def latest(request):
 
             question.save()
         return HttpResponse("Latest Data Fetched from Stack Overflow")
-    except e as Exception:
+    except Exception as e:
         return HttpResponse(f"Failed {e}")
